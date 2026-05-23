@@ -1,0 +1,662 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Elite Gym Motivation</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+  <style>
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:'Poppins',sans-serif;
+    }
+
+    body{
+      background:#000;
+      color:#fff;
+      overflow-x:hidden;
+    }
+
+    html{
+      scroll-behavior:smooth;
+    }
+
+    /* NAVBAR */
+
+    nav{
+      width:100%;
+      position:fixed;
+      top:0;
+      left:0;
+      z-index:1000;
+      padding:20px 8%;
+      display:flex;
+      justify-content:space-between;
+      align-items:center;
+      background:rgba(0,0,0,0.7);
+      backdrop-filter:blur(10px);
+    }
+
+    .logo{
+      font-size:32px;
+      font-weight:900;
+      color:#ff2d2d;
+      letter-spacing:2px;
+      text-transform:uppercase;
+    }
+
+    nav ul{
+      display:flex;
+      gap:35px;
+      list-style:none;
+    }
+
+    nav ul li a{
+      color:white;
+      text-decoration:none;
+      font-weight:500;
+      transition:0.3s;
+    }
+
+    nav ul li a:hover{
+      color:#ff2d2d;
+    }
+
+    /* HERO */
+
+    .hero{
+      height:100vh;
+      background:linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.8)),
+      url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1600&auto=format&fit=crop');
+      background-size:cover;
+      background-position:center;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      text-align:center;
+      padding:0 8%;
+    }
+
+    .hero-content h1{
+      font-size:85px;
+      font-weight:900;
+      line-height:1.1;
+      text-transform:uppercase;
+    }
+
+    .hero-content h1 span{
+      color:#ff2d2d;
+    }
+
+    .hero-content p{
+      margin-top:25px;
+      color:#ddd;
+      font-size:20px;
+      line-height:1.8;
+    }
+
+    .hero-buttons{
+      margin-top:40px;
+      display:flex;
+      justify-content:center;
+      gap:20px;
+      flex-wrap:wrap;
+    }
+
+    .btn{
+      padding:16px 40px;
+      border:none;
+      border-radius:50px;
+      font-size:17px;
+      font-weight:700;
+      cursor:pointer;
+      transition:0.4s;
+    }
+
+    .btn-red{
+      background:#ff2d2d;
+      color:white;
+      box-shadow:0 0 25px rgba(255,45,45,0.5);
+    }
+
+    .btn-red:hover{
+      transform:translateY(-5px);
+      background:#ff0000;
+    }
+
+    .btn-dark{
+      background:transparent;
+      border:2px solid white;
+      color:white;
+    }
+
+    .btn-dark:hover{
+      background:white;
+      color:black;
+    }
+
+    /* STATS */
+
+    .stats{
+      padding:90px 8%;
+      background:#0d0d0d;
+    }
+
+    .stats-container{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+      gap:30px;
+    }
+
+    .stat-box{
+      background:#111;
+      padding:45px 25px;
+      text-align:center;
+      border-radius:25px;
+      transition:0.4s;
+      border:1px solid rgba(255,255,255,0.08);
+    }
+
+    .stat-box:hover{
+      transform:translateY(-10px);
+      box-shadow:0 0 35px rgba(255,45,45,0.25);
+    }
+
+    .stat-box i{
+      font-size:55px;
+      color:#ff2d2d;
+      margin-bottom:20px;
+    }
+
+    .stat-box h2{
+      font-size:50px;
+      color:#ff2d2d;
+    }
+
+    .stat-box p{
+      margin-top:10px;
+      color:#aaa;
+    }
+
+    /* WORKOUT SECTION */
+
+    .section{
+      padding:110px 8%;
+    }
+
+    .section-title{
+      text-align:center;
+      margin-bottom:70px;
+    }
+
+    .section-title h2{
+      font-size:55px;
+      text-transform:uppercase;
+      font-weight:900;
+    }
+
+    .section-title p{
+      color:#aaa;
+      margin-top:20px;
+      font-size:18px;
+      line-height:1.8;
+    }
+
+    .workout-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+      gap:35px;
+    }
+
+    .workout-card{
+      background:#111;
+      border-radius:25px;
+      overflow:hidden;
+      transition:0.4s;
+      border:1px solid rgba(255,255,255,0.08);
+    }
+
+    .workout-card:hover{
+      transform:translateY(-12px);
+      box-shadow:0 0 35px rgba(255,45,45,0.2);
+    }
+
+    .workout-card img{
+      width:100%;
+      height:320px;
+      object-fit:cover;
+      transition:0.4s;
+    }
+
+    .workout-card:hover img{
+      transform:scale(1.08);
+    }
+
+    .workout-content{
+      padding:30px;
+    }
+
+    .workout-content i{
+      color:#ff2d2d;
+      font-size:35px;
+      margin-bottom:15px;
+    }
+
+    .workout-content h3{
+      font-size:30px;
+      margin-bottom:15px;
+    }
+
+    .workout-content p{
+      color:#bbb;
+      line-height:1.8;
+    }
+
+    /* MOTIVATION */
+
+    .motivation{
+      background:#0d0d0d;
+    }
+
+    .motivation-container{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(350px,1fr));
+      align-items:center;
+      gap:60px;
+    }
+
+    .motivation-image img{
+      width:100%;
+      border-radius:30px;
+      box-shadow:0 0 40px rgba(255,45,45,0.15);
+    }
+
+    .motivation-content h2{
+      font-size:60px;
+      line-height:1.2;
+      text-transform:uppercase;
+      font-weight:900;
+    }
+
+    .motivation-content h2 span{
+      color:#ff2d2d;
+    }
+
+    .motivation-content p{
+      margin-top:25px;
+      color:#bbb;
+      line-height:1.9;
+      font-size:18px;
+    }
+
+    .tips{
+      margin-top:35px;
+      display:flex;
+      flex-direction:column;
+      gap:18px;
+    }
+
+    .tip{
+      background:#111;
+      padding:18px 22px;
+      border-radius:18px;
+      display:flex;
+      align-items:center;
+      gap:18px;
+      border:1px solid rgba(255,255,255,0.08);
+      transition:0.3s;
+    }
+
+    .tip:hover{
+      border-color:#ff2d2d;
+      transform:translateX(10px);
+    }
+
+    .tip i{
+      color:#ff2d2d;
+      font-size:22px;
+    }
+
+    /* GALLERY */
+
+    .gallery-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+      gap:30px;
+    }
+
+    .gallery-grid img{
+      width:100%;
+      height:420px;
+      object-fit:cover;
+      border-radius:25px;
+      transition:0.4s;
+      box-shadow:0 0 30px rgba(255,255,255,0.06);
+    }
+
+    .gallery-grid img:hover{
+      transform:scale(1.05);
+    }
+
+    /* CTA */
+
+    .cta{
+      background:linear-gradient(135deg,#ff0000,#ff2d2d,#8b0000);
+      padding:120px 8%;
+      text-align:center;
+    }
+
+    .cta h2{
+      font-size:70px;
+      text-transform:uppercase;
+      font-weight:900;
+      line-height:1.2;
+    }
+
+    .cta p{
+      margin-top:25px;
+      font-size:20px;
+      color:#ffeaea;
+      line-height:1.8;
+    }
+
+    .cta button{
+      margin-top:40px;
+      background:black;
+      color:white;
+      padding:18px 45px;
+      border:none;
+      border-radius:50px;
+      font-size:18px;
+      font-weight:700;
+      cursor:pointer;
+      transition:0.4s;
+    }
+
+    .cta button:hover{
+      transform:translateY(-5px);
+      background:#111;
+    }
+
+    /* FOOTER */
+
+    footer{
+      padding:35px;
+      text-align:center;
+      background:black;
+      color:#888;
+      border-top:1px solid rgba(255,255,255,0.08);
+    }
+
+    /* RESPONSIVE */
+
+    @media(max-width:900px){
+      .hero-content h1{
+        font-size:55px;
+      }
+
+      .section-title h2,
+      .motivation-content h2,
+      .cta h2{
+        font-size:42px;
+      }
+
+      nav ul{
+        display:none;
+      }
+    }
+
+    @media(max-width:600px){
+      .hero-content h1{
+        font-size:42px;
+      }
+
+      .hero-content p{
+        font-size:16px;
+      }
+
+      .btn{
+        width:100%;
+      }
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- NAVBAR -->
+
+  <nav>
+    <div class="logo">EliteFit</div>
+
+    <ul>
+      <li><a href="#home">Home</a></li>
+      <li><a href="#workouts">Workouts</a></li>
+      <li><a href="#motivation">Motivation</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <h1>Build Your <span>Dream Body</span></h1>
+
+      <p>
+        Train harder. Become stronger. Push beyond your limits and transform
+        your body into a symbol of discipline and power.
+      </p>
+
+      <div class="hero-buttons">
+        <button class="btn btn-red">Start Training</button>
+        <button class="btn btn-dark">Explore Workouts</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+
+  <section class="stats">
+    <div class="stats-container">
+
+      <div class="stat-box">
+        <i class="fa-solid fa-dumbbell"></i>
+        <h2>10K+</h2>
+        <p>Daily Motivation</p>
+      </div>
+
+      <div class="stat-box">
+        <i class="fa-solid fa-fire"></i>
+        <h2>500+</h2>
+        <p>Workout Routines</p>
+      </div>
+
+      <div class="stat-box">
+        <i class="fa-solid fa-heart-pulse"></i>
+        <h2>24/7</h2>
+        <p>Fitness Support</p>
+      </div>
+
+      <div class="stat-box">
+        <i class="fa-solid fa-trophy"></i>
+        <h2>100%</h2>
+        <p>Discipline & Focus</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- WORKOUTS -->
+
+  <section class="section" id="workouts">
+
+    <div class="section-title">
+      <h2>Elite Workout Programs</h2>
+      <p>
+        Powerful workout routines designed for muscle growth, endurance,
+        strength, and peak athletic performance.
+      </p>
+    </div>
+
+    <div class="workout-grid">
+
+      <div class="workout-card">
+        <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=1200&auto=format&fit=crop">
+
+        <div class="workout-content">
+          <i class="fa-solid fa-dumbbell"></i>
+          <h3>Chest Power</h3>
+          <p>
+            Build a massive chest with heavy bench presses, cable workouts,
+            and explosive strength routines.
+          </p>
+        </div>
+      </div>
+
+      <div class="workout-card">
+        <img src="https://images.unsplash.com/photo-1518611012118-696072aa579a?q=80&w=1200&auto=format&fit=crop">
+
+        <div class="workout-content">
+          <i class="fa-solid fa-weight-hanging"></i>
+          <h3>Back Strength</h3>
+          <p>
+            Develop a wide V-taper back with pull-ups, rows, and deadlift-based workouts.
+          </p>
+        </div>
+      </div>
+
+      <div class="workout-card">
+        <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=1200&auto=format&fit=crop">
+
+        <div class="workout-content">
+          <i class="fa-solid fa-fire"></i>
+          <h3>Leg Day Beast</h3>
+          <p>
+            Powerful squats, lunges, and explosive leg training for complete lower body strength.
+          </p>
+        </div>
+      </div>
+
+      <div class="workout-card">
+        <img src="https://images.unsplash.com/photo-1517963879433-6ad2b056d712?q=80&w=1200&auto=format&fit=crop">
+
+        <div class="workout-content">
+          <i class="fa-solid fa-bolt"></i>
+          <h3>Shoulder Focus</h3>
+          <p>
+            Build broader shoulders and improve upper body aesthetics with intense training.
+          </p>
+        </div>
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- MOTIVATION -->
+
+  <section class="section motivation" id="motivation">
+
+    <div class="motivation-container">
+
+      <div class="motivation-image">
+        <img src="https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?q=80&w=1200&auto=format&fit=crop">
+      </div>
+
+      <div class="motivation-content">
+
+        <h2>Train Like A <span>Champion</span></h2>
+
+        <p>
+          Success in the gym comes from discipline, consistency, and hard work.
+          Every workout takes you one step closer to becoming your strongest self.
+        </p>
+
+        <div class="tips">
+
+          <div class="tip">
+            <i class="fa-solid fa-check"></i>
+            <span>Train with consistency and discipline.</span>
+          </div>
+
+          <div class="tip">
+            <i class="fa-solid fa-check"></i>
+            <span>Protein intake is essential for muscle growth.</span>
+          </div>
+
+          <div class="tip">
+            <i class="fa-solid fa-check"></i>
+            <span>Progressive overload builds strength faster.</span>
+          </div>
+
+          <div class="tip">
+            <i class="fa-solid fa-check"></i>
+            <span>Recovery and sleep are key to performance.</span>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </section>
+
+  <!-- GALLERY -->
+
+  <section class="section" id="gallery">
+
+    <div class="section-title">
+      <h2>Fitness Gallery</h2>
+      <p>
+        Motivation through strength, transformation, and relentless dedication.
+      </p>
+    </div>
+
+    <div class="gallery-grid">
+
+      <img src="https://images.unsplash.com/photo-1517838277536-f5f99be501cd?q=80&w=1200&auto=format&fit=crop">
+
+      <img src="https://images.unsplash.com/photo-1549476464-37392f717541?q=80&w=1200&auto=format&fit=crop">
+
+      <img src="https://images.unsplash.com/photo-1518611012118-fb4d3d8ac68b?q=80&w=1200&auto=format&fit=crop">
+
+    </div>
+
+  </section>
+
+  <!-- CTA -->
+
+  <section class="cta">
+
+    <h2>No Excuses. <br> Just Results.</h2>
+
+    <p>
+      Your future physique is built by what you do today.
+      Stay hungry, stay focused, and dominate every workout.
+    </p>
+
+    <button>Join The Movement</button>
+
+  </section>
+
+  <!-- FOOTER -->
+
+  <footer>
+    ⚡ Elite Gym Motivation • Strength • Discipline • Power ⚡
+  </footer>
+
+</body>
+</html>
+```
+
